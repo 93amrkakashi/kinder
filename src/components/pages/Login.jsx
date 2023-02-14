@@ -27,11 +27,13 @@ function Login() {
       password: data.password,
       // redirectTo:data.redirectTo
     });
-    if (!sucsess) {
-      return;
-    } else {
+    if (sucsess) {
+      reset()
       navigate(root)
-      return reset();
+      // return;
+    } else {
+      // navigate(root)
+      return ;
     }
   }
 

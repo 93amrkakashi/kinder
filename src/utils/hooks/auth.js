@@ -9,11 +9,9 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import isUsernameExists from "./validate-user";
 import { notifybad, notifygood } from "./notify";
-import { root } from "../routes";
+import { login, root } from "../routes";
 
-
-
-// a function to get current user data for auth 
+// a function to get current user data for auth
 export function useAuth() {
   const [authUser, authLoading, error] = useAuthState(auth);
   const [isLoading, setLoading] = useState(true);
@@ -46,29 +44,34 @@ export function useRegister() {
     email,
     password,
     phone,
-    redirectTo = root
+    redirectTo = root,
   }) {
     setLoading(true);
 
     const usernameExists = await isUsernameExists(username);
 
     if (usernameExists) {
-      notifybad("Username already exists")
+      notifybad("Username already exists");
       setLoading(false);
     } else {
       try {
-        const res = await createUserWithEmailAndPassword(auth, email,phone, password);
+        const res = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          phone,
+          password
+        );
         await setDoc(doc(db, "users", res.user.uid), {
           id: res.user.uid,
           username: username.toLowerCase(),
           avatar: "",
           date: Date.now(),
           admin: false,
-          email:res.user.email,
+          email: res.user.email,
           phone,
-          owner:false,
+          owner: false,
         });
-      notifygood("You created an account")
+        notifygood("You created an account");
         navigate(redirectTo);
       } catch (error) {
       } finally {
@@ -91,7 +94,7 @@ export function useLogin() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       notifygood("You Logged In")
-      // navigate(root);
+      navigate(root);
     } catch (error) {
       notifybad("Email or Password Invalid");
       setLoading(false);
@@ -108,17 +111,17 @@ export function useLogin() {
 // a function to make user logout
 export function useLogout() {
   const [signOut, isLoading, error] = useSignOut(auth);
+  const navigate = useNavigate();
 
   async function logout() {
     if (await signOut()) {
 
       notifygood('You logged out');
+      navigate(login);
     } 
   }
 
   return { logout, isLoading };
 }
 
-
-
-// all functions based on firebase auth 
+// all functions based on firebase auth

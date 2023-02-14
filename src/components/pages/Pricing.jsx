@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { pricing, team } from "../../utils/arrays";
+import { useAuth } from "../../utils/hooks/auth";
 import Navbar from "../layout/Navbar";
-
+import{login} from '../../utils/routes'
 function Pricing() {
+
+  const { user } = useAuth();
+
   return (
     <>
       <Navbar />
@@ -20,7 +24,7 @@ function Pricing() {
                 <h2>{price.name}</h2>
                 <p>{price.p}</p>
                 <h4>{price.price} $/mo</h4>
-                <button><Link to="/student" >Sign Up</Link></button>
+                <button><Link to={user?"/student": '/login'} >Sign Up</Link></button>
               </div>
               
             </div>

@@ -28,8 +28,11 @@ function Register() {
       password: data.password,
       phone: data.phone,
     });
-    reset();
-    console.log(data);
+    if(sucsess){
+
+      reset();
+    }
+    // console.log(data);
   }
   return (
     <>
@@ -62,12 +65,9 @@ function Register() {
             />
             {errors.password ? <span>{errors.password.message}</span> : null}
 
-            <PhoneInput
-              placeholder="Enter phone number"
-              defaultCountry="EG"
-              {...register("phone", phoneValidate)}
-            />
-            {errors.phone ? <span>{errors.phone.message}</span> : null}
+            <label> phone number : </label>
+              <input {...register("fatherPhone", phoneValidate)} type="text" />
+            {errors.fatherPhone ? <span>{errors.fatherPhone.message}</span> : null}
 
             <button className="login-btn" type="submit">
               Rigster

@@ -7,6 +7,7 @@
 @use "./styles/pages/login";
 @use "./styles/pages/register";
 @use "./styles/pages/addstudent";
+@use "./styles/pages/student";
 
 @import './styles/vars';
 
@@ -121,6 +122,14 @@ table{
   td{
     border: 1px solid #000000;
     border-right: 1px solid #000000;
+    a{
+      font-size: 17px;
+    font-weight: 800;
+    transition: all 0.4s;
+    &:hover{
+      color: $btn-color;
+    }
+    }
   }
   
   th{

@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { StudentContext } from "../../context";
 import { useAuth, useLogout } from "../../utils/hooks/auth";
 import { about, admin, login, price, root, team } from "../../utils/routes";
+import { auth } from "../../firebase";
 
 function Navbar() {
-  const { logout, isLoading } = useLogout();
-  const { user } = useAuth();
+
   const navigate = useNavigate();
   const [toggle, settoggle] = useState(false);
-  
-
-  useEffect(() => {
-
-
-  }, [user]);
-
+  const { logout, isLoading } = useLogout();
+  const { user } = useAuth();
+console.log(user);
   return (
     <div className="nav-bar">
       <div className="logo">
@@ -23,25 +21,26 @@ function Navbar() {
         </Link>
       </div>
       {}
-      <div className={toggle ? "mobile" : "links" }>
+      <div className={toggle ? "mobile" : "links"}>
         <div className="navs">
           <NavLink to={root}>Home</NavLink>
-          <Link to={about}>About</Link>
-          <Link to={team}>Team</Link>
-          <Link to={price}>Pricing</Link>
-          <Link to={admin}>Admin</Link>
+          <NavLink to={about}>About</NavLink>
+          <NavLink to={team}>Team</NavLink>
+          <NavLink to={price}>Pricing</NavLink>
+          {user?.admin || (user?.owner && <NavLink to={admin}>Admin</NavLink>)}
         </div>
         <div className="user">
-          {user ? (
+          {user && (
             <>
               <div className="avatar">
-                <p>{user?.username}</p>
+                {/* <Link to={`/admin/childerns/${student?.id}`}>
+                </Link> */}
+                  <p>{user?.username}</p>
               </div>
               <button onClick={logout}>logout</button>
             </>
-          ) : (
-            <button onClick={() => navigate(login)}>login</button>
           )}
+          {!user && <button onClick={() => navigate(login)}>login</button>}
         </div>
       </div>
       <i

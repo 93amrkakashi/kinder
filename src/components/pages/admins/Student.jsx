@@ -9,7 +9,7 @@ function Student() {
   console.log(student);
   if (isLoading) return "loading data ...";
   return (
-    <div>
+    <div className="student-info">
       <img width={"180px"} src={student.picture} alt="" />
 
       <p>Student name : {student.sonName}</p>

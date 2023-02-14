@@ -1,0 +1,17 @@
+.student-info{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    img{
+      width: 200px;
+    border-radius: 8px;
+    }
+    p{
+      font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    }
+}

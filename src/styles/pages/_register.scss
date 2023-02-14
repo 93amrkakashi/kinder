@@ -12,9 +12,11 @@
   justify-content: space-around;
   background-color: #3a3b3c38;
   width: 40%;
-  height: 70%;
+  // height: 70%;
   border-radius: 10px;
   color: #dff6ff;
+  min-height: fit-content;
+    padding: 10px;
   a{
     color:white;
     font-size: 20px;
