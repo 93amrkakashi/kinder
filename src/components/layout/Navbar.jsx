@@ -7,7 +7,7 @@ function Navbar() {
   const { logout, isLoading } = useLogout();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [toggle, settoggle] = useState(true);
+  const [toggle, settoggle] = useState(false);
   
 
   useEffect(() => {
