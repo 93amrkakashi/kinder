@@ -1,0 +1,220 @@
+@use './styles/layout/navbar';
+@use './styles/layout/adminnav';
+@use './styles/layout/hero';
+@use './styles/pages/about';
+@use './styles/pages/team';
+@use './styles/pages/pricing';
+@use "./styles/pages/login";
+@use "./styles/pages/register";
+@use "./styles/pages/addstudent";
+
+@import './styles/vars';
+
+
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+}
+body {
+  font-family: "Cairo", sans-serif;
+  padding: 0;
+  background-color: $bg2-color;
+
+}
+i {
+  font-size: 35px;
+}
+a {
+  text-decoration: none;
+  color: $main-color;
+
+}
+button {
+  width: fit-content;
+  padding: 5px 20px;
+  outline: none;
+  border: none;
+  background-color: $btn-color;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:disabled,
+  &[disabled] {
+    // border: 1px solid #999999;
+    background-color: #361df165;
+    color: #666666;
+    cursor: default;
+  }
+}
+
+.poslider{
+  .slide {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 20px;
+  }
+}
+
+.slick-slide > div {
+  display: grid;
+  place-items: center;
+  width: 95%;
+  margin: auto;
+  padding: 0px;
+  height: 100%;
+}
+*::-webkit-scrollbar {
+  width: 0.4em;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: rgb(92, 92, 92);
+outline: 1px solid slategrey;
+border-radius: 30px;
+&:hover{
+background-color: rgb(0, 0, 0);
+
+}
+}
+span{
+  color: red;
+}
+
+.ok{
+  color: green;
+}
+.no{
+  color: red;
+}
+
+
+
+// ++++++++++++++++++++++++++++++++++++++
+
+
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  overflow: hidden;
+  
+ td, th{
+  border-top: 1px solid #020202;
+  padding: 5px;
+  }
+  
+  td{
+    border: 1px solid #000000;
+    border-right: 1px solid #000000;
+  }
+  
+  th{
+    background-color: #4ECDC4;
+    border: 1px solid black;
+  }
+  
+  tr:nth-of-type(even) td{
+    background-color: lighten(#4ECDC4, 35%);
+  }
+  
+  
+}
+
+  
+
+// @media only screen and (max-width: 760px){
+//   p{
+//     display: block;
+//     font-weight: bold;
+//   }
+  
+//   table{
+//     tr{
+//       td:not(:first-child), th:not(:first-child), td:not(.total-val){
+//         display: none;
+//       }
+      
+//       &:nth-of-type(even) td:first-child{
+//         background-color: lighten(#4ECDC4, 35%);
+//       }
+//       &:nth-of-type(odd) td:first-child{
+//         background-color: white;
+//       }
+      
+//       &:nth-of-type(even) td:not(:first-child){
+//         background-color: white;
+//       }
+      
+//       th:first-child{
+//         width: 100%;
+//         display:block;
+//       }
+      
+//       th:not(:first-child){
+//         width: 40%;
+//         transition: transform 0.4s ease-out;
+//         transform:translateY(-9999px);
+//         position: relative;
+//         z-index: -1;
+//       }
+      
+//       td:not(:first-child){
+//         transition: transform 0.4s ease-out;
+//         transform:translateY(-9999px);
+//         width: 60%;
+//         position: relative;
+//         z-index: -1;
+//       }
+      
+//       td:first-child{
+//         display: block;
+//         cursor: pointer;
+//       }
+      
+//       &.total th{
+//         width: 25%;
+//         display: inline-block;
+//       }
+      
+//       td.total-val{
+//         display: inline-block;
+//         transform: translateY(0);
+//         width: 75%;
+//       }
+//     }
+//   }
+// }
+
+// @media only screen and (max-width: 300px){
+//   table{
+//     tr{
+//       th:not(:first-child){
+//         width: 50%;
+//         font-size: 14px;
+//       }
+      
+//       td:not(:first-child){
+//         width: 50%;
+//         font-size: 14px;
+//       }
+//     }
+//   }
+// }
+
+
+

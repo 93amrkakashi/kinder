@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { RouterProvider } from "react-router-dom";
+import { StudentContext } from "./context";
+import { useParents, useStudents } from "./utils/hooks/students";
+
+import { routes } from "./utils/routes";
 
 function App() {
+  const [search, setsearch] = useState(null)
+  const { students, isLoading } = useStudents(search);
+  const { parents } = useParents(search);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <StudentContext.Provider value={{students,parents,search,setsearch}}>
+        <RouterProvider router={routes} />
+      </StudentContext.Provider>
+    </>
   );
 }
 

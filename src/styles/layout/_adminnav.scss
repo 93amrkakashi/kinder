@@ -1,0 +1,47 @@
+@import "../vars";
+
+.admin-nav {
+  height: 40px;
+  padding: 0 15px;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a {
+    color: $color2;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+  }
+  .links {
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .search {
+    form {
+      display: flex;
+      input {
+        padding: 3px 8px;
+        outline: none;
+        border: none;
+        height: 30px;
+        border-radius: 8px 0 0 8px;
+      }
+      button {
+        height: 30px;
+        border-radius: 0 8px 8px 0;
+        border: none;
+        outline: none;
+        width: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

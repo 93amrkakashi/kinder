@@ -1,0 +1,118 @@
+@import "../vars";
+
+.about {
+  .upper {
+    text-align: center;
+    padding: 5px 15px;
+    letter-spacing: 1px;
+
+    p {
+      line-height: 2;
+    }
+  }
+  .down {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 5px 10px;
+    gap: 15px;
+    margin-top: 25px;
+    .left {
+      width: 50%;
+      border-radius: 10px;
+      overflow: hidden;
+      height: 60%;
+      img {
+        width: 100%;
+      }
+    }
+    .right {
+      width: 50%;
+      .progress {
+        position: relative;
+        width: 90%;
+        height: 10px;
+        border: $border;
+        margin: 10px;
+        border-radius: 15px;
+        span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          border-radius: 15px;
+          animation-name: spanpro;
+          background-color: $btn-color;
+          animation-duration: 0.7s;
+          animation-timing-function: linear;
+          animation-direction: alternate;
+          animation-fill-mode: forwards;
+        }
+      }
+    }
+  }
+}
+
+.programs {
+  width: 100%;
+  min-height: 80vh;
+  background-image: url("https://livedemo00.template-help.com/wt_prod-22895/images/home-bg-1-1920x770.jpg");
+  background: no-repeat cover center;
+  .heading {
+    text-align: center;
+    margin: 15px auto;
+  }
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    .card-2 {
+      width: 300px;
+      height: 400px;
+      border: $border;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      color: $main-color;
+      background-color: $bg-color;
+      transition: all 0.5s;
+      &:hover {
+        transform: translateY(-8px);
+      }
+      img {
+        width: 100%;
+      }
+      h3 {
+        color: $btn-color;
+      }
+      p {
+        min-height: 100px;
+      }
+    }
+  }
+}
+
+
+
+@media screen and (max-width: 700px) {
+  .about {
+    .down {
+      flex-direction: column;
+      .left {
+        width: 95%;
+      }
+      .right {
+        width: 95%;
+      }
+    }
+  }
+
+  .programs {
+    .cards {
+      justify-content: center;
+      gap: 15px;
+    }
+  }
+}

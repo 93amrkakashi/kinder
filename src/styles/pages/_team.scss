@@ -1,0 +1,56 @@
+@import "../vars";
+
+.section {
+  width: 100%;
+  min-height: 80vh;
+  .heading {
+    text-align: center;
+    margin: 15px auto;
+  }
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 20px 0;
+    gap: 15px;
+    .card {
+      width: 300px;
+      min-height: 570px;
+      border: $border;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      color: $main-color;
+      background-color: $bg-color;
+      transition: all 0.5s;
+      &:hover {
+        transform: translateY(-8px);
+      }
+      img {
+        width: 100%;
+      }
+      h3 {
+        color: $btn-color;
+      }
+      p {
+        min-height: 100px;
+        padding: 8px;
+      }
+      .social {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        i {
+          font-size: 25px;
+          color: $btn-color;
+          transition: all 0.5s;
+          &:hover{
+            transform: scale(1.555);
+          }
+        }
+      }
+    }
+  }
+}
