@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useRegister } from "../../utils/hooks/auth";
 import {
   emailValidate,
+  FnameValidate,
   passwordValidate,
   phoneValidate,
   usernameValidate,
@@ -20,16 +21,17 @@ function Register() {
     reset,
     formState: { errors },
   } = useForm();
-  const { register: signup, isLoading } = useRegister();
+  const { signup, isLoading } = useRegister();
   async function handleregister(data) {
     const sucsess = await signup({
+      firstName:data.firstname,
+      lastName:data.lastname,
       username: data.username,
       email: data.email,
       password: data.password,
       phone: data.phone,
     });
-    if(sucsess){
-
+    if (sucsess) {
       reset();
     }
     // console.log(data);
@@ -41,10 +43,34 @@ function Register() {
         <div className="login-card">
           <h2>Regster</h2>
           <form onSubmit={handleSubmit(handleregister)}>
+            <div className="s-input">
+              <div className="name">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  {...register("firstname", FnameValidate)}
+                />
+                {errors.Firstname ? (
+                  <span>{errors.Firstname.message}</span>
+                ) : null}
+              </div>
+              <div className="name">
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  {...register("lastname", FnameValidate)}
+                />
+                {errors.lastname ? (
+                  <span>{errors.lastname.message}</span>
+                ) : null}
+              </div>
+            </div>
             <label> User Name</label>
             <input
               type="text"
-              placeholder="your User Name"
+              placeholder="your User Name EX(ahmed99)"
               {...register("username", usernameValidate)}
             />
             {errors.username ? <span>{errors.username.message}</span> : null}
@@ -66,8 +92,10 @@ function Register() {
             {errors.password ? <span>{errors.password.message}</span> : null}
 
             <label> phone number : </label>
-              <input {...register("fatherPhone", phoneValidate)} type="text" />
-            {errors.fatherPhone ? <span>{errors.fatherPhone.message}</span> : null}
+            <input {...register("phone", phoneValidate)} type="text" />
+            {errors.fatherPhone ? (
+              <span>{errors.fatherPhone.message}</span>
+            ) : null}
 
             <button className="login-btn" type="submit">
               Rigster

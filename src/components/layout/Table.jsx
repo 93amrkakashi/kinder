@@ -30,7 +30,7 @@ function Table({ students,search }) {
               {student?.sonAge > "6" && <td >Early Kindergarten</td>}
             
               <td>{student?.fatherName}</td>
-              {student?.payment ?<td className="ok">Yes</td> : <td className="no">No</td>}
+              {student?.payment == "true" ?<td className="ok">Yes</td> : <td className="no">No</td>}
               
             </tr>
           )):students?.map((element) => 
@@ -42,7 +42,7 @@ function Table({ students,search }) {
               {element?.sonAge > "4" && element?.sonAge <= "6" && <td >Kids</td>}
               {element?.sonAge > "6" && <td >Early Kindergarten</td>}
            <td>{element?.fatherName}</td>
-           {element?.payment ?<td className="ok">Yes</td> : <td className="no">No</td>}
+           {element?.payment == "true" ?<td className="ok">Yes</td> : <td className="no">No</td>}
 
          </tr>}) }
         </tbody>

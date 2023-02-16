@@ -4,7 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { StudentContext } from "../../context";
 import { useAuth, useLogout } from "../../utils/hooks/auth";
 import { useStudents } from "../../utils/hooks/students";
-import { childern, childerns, parents } from "../../utils/routes";
+import { admins, childern, childerns, parents, users } from "../../utils/routes";
 
 function AdminNav() {
 
@@ -32,7 +32,11 @@ function AdminNav() {
       <div className="links">
         <NavLink to={childerns}>Students</NavLink>
         <NavLink to={parents}>Parents</NavLink>
+        {user?.owner && <NavLink to={users}>Users</NavLink> }
+        {user?.owner && <NavLink to={admins}>Admins</NavLink> }
+        
       </div>
+      <i onClick={() => setsearch(null)} className="fa-solid fa-arrows-rotate"></i>
       <div className="search">
         <form
         onSubmit={handleSubmit(handlesearch)}

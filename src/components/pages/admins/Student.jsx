@@ -1,5 +1,8 @@
+import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import { db } from "../../../firebase";
 import { useStudent } from "../../../utils/hooks/students";
 
 function Student() {
@@ -7,6 +10,22 @@ function Student() {
 
   const { student, isLoading } = useStudent(id);
   console.log(student);
+
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  async function updateUser(data) {
+    const docRef = doc(db, "students", student?.id);
+    await updateDoc(docRef, {
+      payment: data.pay,
+    });
+    // console.log(data);
+    // navigate(0);
+  }
   if (isLoading) return "loading data ...";
   return (
     <div className="student-info">
@@ -23,8 +42,22 @@ function Student() {
       {student?.sonAge <= "4" && <p>Class : Infants</p>}
       {student?.sonAge > "4" && student?.sonAge <= "6" && <p>Class : Kids</p>}
       {student?.sonAge > "6" && <p>Class : Early Kindergarten</p>}
-      {student?.payment ?<p className="ok">Payment : Yes</p> : <p className="no">Payment : No</p>}
+      {student?.payment == "true" ?<p className="ok">Payment : Yes</p> : <p className="no">Payment : No</p>}
 
+
+
+      <form onSubmit={handleSubmit(updateUser)}>
+              <div className="feild-2">
+                <input {...register("pay")} type="radio" value={true} />
+                <label>Paid</label>
+              </div>
+
+              <div className="feild-2">
+                <input {...register("pay")} type="radio" value={false} />
+                <label>Not paid</label>
+              </div>
+              <button type="submit">edit payment</button>
+            </form>
     </div>
   );
 }

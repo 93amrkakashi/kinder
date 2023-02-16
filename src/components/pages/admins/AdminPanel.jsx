@@ -4,14 +4,15 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { StudentContext } from "../../../context";
 import { useAuth } from "../../../utils/hooks/auth";
 import { useStudents } from "../../../utils/hooks/students";
-import { childern, login, parents } from "../../../utils/routes";
+import { childern, login, parents, root } from "../../../utils/routes";
 import AdminNav from "../../layout/AdminNav";
 import Navbar from "../../layout/Navbar";
+import HomePage from "../HomePage";
 import Parents from "./Parents";
 import Students from "./Students";
 
 function AdminPanel() {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
   const {
     register,
     handleSubmit,
@@ -21,21 +22,22 @@ function AdminPanel() {
   const [search, setsearch] = useState(null);
   const { students } = useContext(StudentContext);
   const navigate = useNavigate();
+  // if(isLoading) return "loading ...";
 
-  useEffect(() => {}, [search]);
+  // if(!user) navigate(login)
+  useEffect(() => {
+  }, [search]);
   return (
     <>
-      {!user ? (
-        navigate(login)
-      ) : (
+      {user?.admin ?
         <>
           <Navbar />
           <div className="admins">
             <AdminNav />
-            <Outlet search={search} />
+            <Outlet />
           </div>
-        </>
-      )}
+        </> : <HomePage />
+      }
     </>
   );
 }

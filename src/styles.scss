@@ -92,7 +92,29 @@ background-color: rgb(0, 0, 0);
 }
 }
 span{
-  color: red;
+  color: rgb(255, 0, 0);
+    // position: absolute;
+    // border: 1px solid red;
+    // border-radius: 5px;
+    // top: 65px;
+    // left: 19%;
+    // background: #dd6363;
+    // padding: 5px;
+    // min-width: 140px;
+    // box-sizing: border-box;
+    // &:after{
+    //   content: "";
+    //   border-top-color: red;
+    //   border-bottom-color: transparent;
+    //   border-left-color: transparent;
+    //   border-right-color: transparent;
+    //   border-width: 10px;
+    //   border-style: solid;
+    //   display: block;
+    //   position: absolute;
+    //   top: 31px;
+    //   left: 50px;
+    // }
 }
 
 .ok{

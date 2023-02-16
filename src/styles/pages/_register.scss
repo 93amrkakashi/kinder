@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  min-height: 90vh;
+    width: 100%;
 
 }
 .login-card {
@@ -17,6 +18,15 @@
   color: #dff6ff;
   min-height: fit-content;
     padding: 10px;
+    margin: 10px auto;
+    .s-input{
+      display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .name{
+      position: relative;
+    }
+    }
   a{
     color:white;
     font-size: 20px;
@@ -60,7 +70,7 @@
 @media screen and (max-width:750px) {
   .login-card {
     
-    width: 75%;
+    width: 85%;
   }
   
   

@@ -12,7 +12,7 @@ function Navbar() {
   const [toggle, settoggle] = useState(false);
   const { logout, isLoading } = useLogout();
   const { user } = useAuth();
-console.log(user);
+// console.log(user);
   return (
     <div className="nav-bar">
       <div className="logo">
@@ -27,15 +27,16 @@ console.log(user);
           <NavLink to={about}>About</NavLink>
           <NavLink to={team}>Team</NavLink>
           <NavLink to={price}>Pricing</NavLink>
-          {user?.admin || (user?.owner && <NavLink to={admin}>Admin</NavLink>)}
+          {user?.admin  && <NavLink to={admin}>Admin</NavLink>}
         </div>
         <div className="user">
           {user && (
             <>
               <div className="avatar">
-                {/* <Link to={`/admin/childerns/${student?.id}`}>
-                </Link> */}
-                  <p>{user?.username}</p>
+                <img src={user?.avatar} alt="" />
+                <Link to={`/users/${user?.id}`}>
+                  <p>{`${user?.firstName} ${user?.lastName}`}</p>
+                  </Link>
               </div>
               <button onClick={logout}>logout</button>
             </>

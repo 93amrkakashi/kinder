@@ -13,6 +13,21 @@ export const usernameValidate = {
   },
 };
 
+export const FnameValidate = {
+  required: {
+    value: true,
+    message: "Please enter name",
+  },
+  minLength: {
+    value: 3,
+    message: "Name must be at least 6 characters long",
+  },
+  pattern: {
+    value: /^[a-z ,.'-]+$/i,
+    message: "Please enter a valid name",
+  },
+};
+
 export const emailValidate = {
   required: {
     value: true,

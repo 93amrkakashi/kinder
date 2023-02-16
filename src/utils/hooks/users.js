@@ -6,8 +6,8 @@ import {
 } from "react-firebase-hooks/firestore";
 import { useNavigate } from "react-router-dom";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { db } from "../../firebase";
-
+import { db, storage } from "../../firebase";
+import { notifybad, notifygood } from "./notify";
 
 export function useUser(id) {
   const q = query(doc(db, "users", id));
@@ -20,38 +20,37 @@ export function useUsers() {
   return { users, isLoading };
 }
 
-// export function useUpdateAvatar(uid) {
-//   const [isLoading, setLoading] = useState(false);
-//   const [file, setFile] = useState(null);
-//   const navigate = useNavigate();
+export function useUpdateAvatar(uid) {
+  const [isLoading, setLoading] = useState(false);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
-//   async function updateAvatar() {
-//     if (!file) {
-//       notifynofile();
+  async function updateAvatar() {
+    if (!file) {
+      notifybad("no file choosen");
 
-//       return;
-//     }
+      return;
+    }
 
-//     setLoading(true);
+    setLoading(true);
 
-//     const fileRef = ref(storage, "avatars/" + uid);
-//     await uploadBytes(fileRef, file);
+    const fileRef = ref(storage, "avatars/" + uid);
+    await uploadBytes(fileRef, file);
 
-//     const avatarURL = await getDownloadURL(fileRef);
+    const avatarURL = await getDownloadURL(fileRef);
 
-//     const docRef = doc(db, "users", uid);
-//     await updateDoc(docRef, { avatar: avatarURL });
+    const docRef = doc(db, "users", uid);
+    await updateDoc(docRef, { avatar: avatarURL });
 
-//     notifyupload();
-//     setLoading(false);
+    notifygood("image uploaded");
+    setLoading(false);
 
-//     navigate(0);
-//   }
+    // navigate(0);
+  }
 
-//   return {
-//     setFile,
-//     updateAvatar,
-//     isLoading,
-//   };
-// }
-
+  return {
+    setFile,
+    updateAvatar,
+    isLoading,
+  };
+}

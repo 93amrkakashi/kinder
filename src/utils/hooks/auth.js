@@ -5,7 +5,7 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { addDoc, doc, getDoc, setDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import isUsernameExists from "./validate-user";
 import { notifybad, notifygood } from "./notify";
@@ -39,11 +39,13 @@ export function useRegister() {
   const [isLoading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function register({
+  async function signup({
     username,
     email,
     password,
     phone,
+    firstName,
+    lastName,
     redirectTo = root,
   }) {
     setLoading(true);
@@ -55,12 +57,7 @@ export function useRegister() {
       setLoading(false);
     } else {
       try {
-        const res = await createUserWithEmailAndPassword(
-          auth,
-          email,
-          phone,
-          password
-        );
+        const res = await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", res.user.uid), {
           id: res.user.uid,
           username: username.toLowerCase(),
@@ -68,19 +65,23 @@ export function useRegister() {
           date: Date.now(),
           admin: false,
           email: res.user.email,
-          phone,
           owner: false,
+          phone,
+          firstName,
+          lastName,
         });
         notifygood("You created an account");
         navigate(redirectTo);
       } catch (error) {
+        throw error;
+        console.log(error);
       } finally {
         setLoading(false);
       }
     }
   }
 
-  return { register, isLoading };
+  return { signup, isLoading };
 }
 
 // a function to make user login
@@ -93,7 +94,7 @@ export function useLogin() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      notifygood("You Logged In")
+      notifygood("You Logged In");
       navigate(root);
     } catch (error) {
       notifybad("Email or Password Invalid");
@@ -115,10 +116,9 @@ export function useLogout() {
 
   async function logout() {
     if (await signOut()) {
-
-      notifygood('You logged out');
+      notifygood("You logged out");
       navigate(login);
-    } 
+    }
   }
 
   return { logout, isLoading };

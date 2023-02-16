@@ -87,7 +87,7 @@ function Subscribe() {
           <div className="son">
             <h3>Your child information</h3>
             <div className="feild">
-              <label> Name : </label>
+              <label>Full Name : </label>
               <input {...register("sonName", nameValidate)} type="text" />
             {errors.sonName ? <span>{errors.sonName.message}</span> : null}
 
